@@ -1,0 +1,28 @@
+apply plugin: 'war'
+apply plugin: 'com.bmuschko.cargo'
+
+dependencies {
+
+
+}
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.bmuschko:gradle-cargo-plugin:2.2.3'
+    }
+}
+
+cargo {
+containerId = 'tomcat8x'
+    port = 8080
+
+    remote {
+         hostname = 'localhost'
+       username = 'tomcat'
+        password = 'tomcat'
+    }
+}

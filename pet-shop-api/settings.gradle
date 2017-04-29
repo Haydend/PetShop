@@ -1,0 +1,8 @@
+include ":pet-shop-api-controller"
+include ":pet-shop-api-controller-mapper"
+include ":pet-shop-api-controller-model"
+include ":pet-shop-api-domain"
+include ":pet-shop-api-service"
+include ":pet-shop-api-persistence"
+include ":pet-shop-api-persistence-mapper"
+include ":pet-shop-api-persistence-model"

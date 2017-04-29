@@ -1,0 +1,23 @@
+
+ext.commonLangVersion = "3.5"
+ext.commonCollectionsVersion = "4.1"
+ext.junitVersion = "4.12"
+
+allprojects {
+    apply plugin: 'java'
+    apply plugin: 'eclipse-wtp'
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+
+        compile "org.apache.commons:commons-lang3:$commonLangVersion"
+        compile "org.apache.commons:commons-collections4:$commonCollectionsVersion"
+
+        testCompile "junit:junit:$junitVersion"
+    }
+}
+
+
