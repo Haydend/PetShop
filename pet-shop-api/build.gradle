@@ -1,6 +1,12 @@
 
+// Commons
 ext.commonLangVersion = "3.5"
 ext.commonCollectionsVersion = "4.1"
+
+// Web
+ext.jerseyVersion = "2.25.1"
+
+// Test
 ext.junitVersion = "4.12"
 
 allprojects {
@@ -13,9 +19,11 @@ allprojects {
 
     dependencies {
 
+        // Commons
         compile "org.apache.commons:commons-lang3:$commonLangVersion"
         compile "org.apache.commons:commons-collections4:$commonCollectionsVersion"
 
+        // Test
         testCompile "junit:junit:$junitVersion"
     }
 }
