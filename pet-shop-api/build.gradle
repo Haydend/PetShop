@@ -6,6 +6,9 @@ ext.commonCollectionsVersion = "4.1"
 // Web
 ext.jerseyVersion = "2.25.1"
 
+// JSON
+ext.jaxbVersion = "2.1"
+
 // Test
 ext.junitVersion = "4.12"
 
