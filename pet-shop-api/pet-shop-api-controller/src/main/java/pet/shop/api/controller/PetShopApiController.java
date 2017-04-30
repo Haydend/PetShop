@@ -45,6 +45,8 @@ public class PetShopApiController {
     @Produces(MediaType.APPLICATION_JSON)
     public PetControllerModel retrieveAllPets() {
 
+        petShopApiService.test();
+
         final PetControllerModel petControllerModel = new PetControllerModel();
         petControllerModel.setName("Freddy");
         petControllerModel.setAge(10);
