@@ -5,7 +5,9 @@ dependencies {
 
     // Project
     compile project(":pet-shop-api-controller-model")
+    compile project(":pet-shop-api-controller-mapper")
     compile project(":pet-shop-api-service")
+    compile project(":pet-shop-api-domain")
     
     // Jersey
     compile "org.glassfish.jersey.containers:jersey-container-servlet:$jerseyVersion"

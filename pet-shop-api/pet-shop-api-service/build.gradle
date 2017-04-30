@@ -1,5 +1,9 @@
 dependencies {
 
+    // Project
+    compile project(":pet-shop-api-domain")
+
+    // CDI
     compile "javax.enterprise:cdi-api:$cdiApiVersion"
     
 }

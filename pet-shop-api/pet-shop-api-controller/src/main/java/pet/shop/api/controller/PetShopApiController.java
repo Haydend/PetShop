@@ -3,15 +3,18 @@
  */
 package pet.shop.api.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import pet.shop.api.controller.mapper.PetControllerMapper;
 import pet.shop.api.controller.model.PetControllerModel;
-import pet.shop.api.controller.model.SpeciesControllerEnum;
-import pet.shop.api.controller.model.StatusControlerEnum;
+import pet.shop.api.domain.Pet;
 import pet.shop.api.service.PetShopApiService;
 
 /**
@@ -23,37 +26,45 @@ public class PetShopApiController {
     /** {@link PetShopApiService}. */
     private final PetShopApiService petShopApiService;
 
+    /** {@link PetControllerMapper}. */
+    private final PetControllerMapper petControllerMapper;
+
     /**
      * Constructor for {@link PetShopApiController}.
      *
      * @param petShopApiService
      *            {@link PetShopApiService}.
+     * @param petControllerMapper
+     *            {@link PetControllerMapper}.
      */
     @Inject
-    public PetShopApiController(final PetShopApiService petShopApiService) {
+    public PetShopApiController(final PetShopApiService petShopApiService,
+            final PetControllerMapper petControllerMapper) {
 
         this.petShopApiService = petShopApiService;
+        this.petControllerMapper = petControllerMapper;
     }
 
     /**
      * Retrieve all pets.
      *
-     * @return
+     * @return {@link List} of {@link PetControllerModel}.
      */
     @GET()
     @Path("/all")
     @Produces(MediaType.APPLICATION_JSON)
-    public PetControllerModel retrieveAllPets() {
+    public List<PetControllerModel> retrieveAllPets() {
 
-        petShopApiService.test();
+        final List<Pet> petList = petShopApiService.retrieveAllPets();
 
-        final PetControllerModel petControllerModel = new PetControllerModel();
-        petControllerModel.setName("Freddy");
-        petControllerModel.setAge(10);
-        petControllerModel.setSpecies(SpeciesControllerEnum.DOG);
-        petControllerModel.setStatus(StatusControlerEnum.AVAILABLE_FOR_ADOPTION);
+        final List<PetControllerModel> petControllerModelList = new ArrayList<>();
+        for (final Pet pet : petList) {
 
-        return petControllerModel;
+            final PetControllerModel petControllerModel = petControllerMapper.mapTo(pet);
+            petControllerModelList.add(petControllerModel);
+        }
+
+        return petControllerModelList;
     }
 
 }
