@@ -56,3 +56,5 @@ local.properties
 .worksheet
 
 .gradle/
+
+build/*

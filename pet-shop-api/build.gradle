@@ -9,6 +9,10 @@ ext.jerseyVersion = "2.25.1"
 // JSON
 ext.jaxbVersion = "2.1"
 
+// CDI
+ext.weldVersion = "2.4.3.Final"
+ext.cdiApiVersion = "1.2"
+
 // Test
 ext.junitVersion = "4.12"
 

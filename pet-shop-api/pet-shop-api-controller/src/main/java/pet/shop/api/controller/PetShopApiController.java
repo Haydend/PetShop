@@ -3,6 +3,7 @@
  */
 package pet.shop.api.controller;
 
+import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -11,12 +12,28 @@ import javax.ws.rs.core.MediaType;
 import pet.shop.api.controller.model.PetControllerModel;
 import pet.shop.api.controller.model.SpeciesControllerEnum;
 import pet.shop.api.controller.model.StatusControlerEnum;
+import pet.shop.api.service.PetShopApiService;
 
 /**
  * Pet Shop API controller.
  */
 @Path("/pet")
 public class PetShopApiController {
+
+    /** {@link PetShopApiService}. */
+    private final PetShopApiService petShopApiService;
+
+    /**
+     * Constructor for {@link PetShopApiController}.
+     *
+     * @param petShopApiService
+     *            {@link PetShopApiService}.
+     */
+    @Inject
+    public PetShopApiController(final PetShopApiService petShopApiService) {
+
+        this.petShopApiService = petShopApiService;
+    }
 
     /**
      * Retrieve all pets.
