@@ -6,14 +6,32 @@ package pet.shop.api.service;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import pet.shop.api.domain.Pet;
 import pet.shop.api.domain.Species;
 import pet.shop.api.domain.Status;
+import pet.shop.api.persistence.service.PetPersistenceService;
 
 /**
  * Implementation of {@link PetShopApiService}
  */
 public class PetShopApiServiceHandler implements PetShopApiService {
+
+    /** {@link PetPersistenceService}. */
+    private final PetPersistenceService petPersistenceService;
+
+    /**
+     * Constructor.
+     *
+     * @param petPersistenceService
+     *            {@link PetPersistenceService}.
+     */
+    @Inject
+    public PetShopApiServiceHandler(final PetPersistenceService petPersistenceService) {
+
+        this.petPersistenceService = petPersistenceService;
+    }
 
     /**
      * {@inheritDoc}
@@ -27,6 +45,8 @@ public class PetShopApiServiceHandler implements PetShopApiService {
             .species(Species.CAT)
             .status(Status.AVAILABLE_FOR_ADOPTION)
             .build();
+
+        petPersistenceService.savePet(dog);
 
         return Arrays.asList(dog, cat);
     }

@@ -1,4 +1,17 @@
 dependencies {
 
+    // Project
+    compile project(":pet-shop-api-persistence-model")
+    compile project(":pet-shop-api-persistence-mapper")
+    compile project(":pet-shop-api-domain")
+
+    // CDI
+    compile "javax.enterprise:cdi-api:$cdiApiVersion"
+
+    // Persistence
+    compile "org.hibernate:hibernate-core:$hibernateVersion"
+    compile "org.apache.deltaspike.modules:deltaspike-data-module-api:$deltaspikeVersion"
+    compile "org.apache.deltaspike.modules:deltaspike-data-module-impl:$deltaspikeVersion"
+    compile "com.h2database:h2:$h2Version"
 
 }

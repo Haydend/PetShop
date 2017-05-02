@@ -17,6 +17,12 @@ ext.cdiApiVersion = "1.2"
 ext.junitVersion = "4.12"
 ext.mockitoVersion = "1.10.19"
 
+// Persistence
+ext.hibernateVersion = "5.2.10.Final"
+ext.jpaVersion = "1.0.0.Final"
+ext.deltaspikeVersion = "1.7.2"
+ext.h2Version = "1.4.195"
+
 allprojects {
     apply plugin: 'java'
     apply plugin: 'eclipse-wtp'
