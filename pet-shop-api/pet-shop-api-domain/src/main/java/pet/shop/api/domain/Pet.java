@@ -14,6 +14,9 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  */
 public class Pet {
 
+    /** Identifier. */
+    private final Long id;
+
     /** Name. */
     private final String name;
 
@@ -34,6 +37,7 @@ public class Pet {
      */
     private Pet(final PetBuilder petBuilder) {
 
+        id = petBuilder.id;
         name = petBuilder.name;
         age = petBuilder.age;
         species = petBuilder.species;
@@ -73,6 +77,9 @@ public class Pet {
      */
     public static class PetBuilder implements Builder<Pet> {
 
+        /** Identifier. */
+        private Long id;
+
         /** Name. */
         private String name;
 
@@ -84,6 +91,14 @@ public class Pet {
 
         /** {@link Status}. */
         private Status status;
+
+        /**
+         * @param id
+         *            the id to set
+         */
+        public void id(final Long id) {
+            this.id = id;
+        }
 
         /**
          * @param name
@@ -137,7 +152,8 @@ public class Pet {
 
             final Pet other = (Pet) obj;
 
-            return new EqualsBuilder().append(name, other.name)
+            return new EqualsBuilder().append(id, other.id)
+                .append(name, other.name)
                 .append(age, other.age)
                 .append(species, other.species)
                 .append(status, other.status)
@@ -151,7 +167,7 @@ public class Pet {
     /** {@inheritDoc} */
     @Override
     public int hashCode() {
-        return new HashCodeBuilder().append(name).append(age).append(species).append(status).toHashCode();
+        return new HashCodeBuilder().append(id).append(name).append(age).append(species).append(status).toHashCode();
     }
 
     /**
@@ -160,7 +176,8 @@ public class Pet {
     @Override
     public String toString() {
 
-        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE).append(name)
+        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE).append(id)
+            .append(name)
             .append(age)
             .append(species)
             .append(status)
