@@ -96,8 +96,9 @@ public class Pet {
          * @param id
          *            the id to set
          */
-        public void id(final Long id) {
+        public PetBuilder id(final Long id) {
             this.id = id;
+            return this;
         }
 
         /**

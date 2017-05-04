@@ -3,6 +3,7 @@
  */
 package pet.shop.api.persistence.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -45,11 +46,16 @@ public class PetPersistenceServiceHandler implements PetPersistenceService {
     @Override
     public Pet savePet(final Pet pet) {
 
+        // Map from domain to persistence model.
         final PetPersistenceModel petPersistenceModel = petPersistenceMapper.mapTo(pet);
 
+        // Save model.
         final PetPersistenceModel savedPetPersistenceModel = petRepository.save(petPersistenceModel);
 
-        return null;
+        // Map saved persistence model to domain modal.
+        final Pet savedPet = petPersistenceMapper.mapFrom(savedPetPersistenceModel);
+
+        return savedPet;
     }
 
     /**
@@ -57,8 +63,19 @@ public class PetPersistenceServiceHandler implements PetPersistenceService {
      */
     @Override
     public List<Pet> findAllPets() {
-        // TODO Auto-generated method stub
-        return null;
+
+        // Retrieve all pets.
+        final List<PetPersistenceModel> petPersistenceModelList = petRepository.findAll();
+
+        // Map pets from persistence to domain model.
+        final List<Pet> petList = new ArrayList<>();
+        for (final PetPersistenceModel petPersistenceModel : petPersistenceModelList) {
+
+            final Pet pet = petPersistenceMapper.mapFrom(petPersistenceModel);
+            petList.add(pet);
+        }
+
+        return petList;
     }
 
     /**
@@ -66,8 +83,14 @@ public class PetPersistenceServiceHandler implements PetPersistenceService {
      */
     @Override
     public Pet findPetById(final Long id) {
-        // TODO Auto-generated method stub
-        return null;
+
+        // Retrieve pet by identifier.
+        final PetPersistenceModel petPersistenceModel = petRepository.findBy(id);
+
+        // Map pet from persistence to domain model.
+        final Pet pet = petPersistenceMapper.mapFrom(petPersistenceModel);
+
+        return pet;
     }
 
 }

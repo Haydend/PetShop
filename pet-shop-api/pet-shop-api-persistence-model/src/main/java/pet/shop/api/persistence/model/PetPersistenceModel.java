@@ -23,7 +23,7 @@ public class PetPersistenceModel {
     @Id
     @GeneratedValue
     /** Identifier. */
-    private Integer id;
+    private Long id;
 
     /** Name. */
     private String name;
@@ -40,7 +40,7 @@ public class PetPersistenceModel {
     /**
      * @return the id
      */
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
@@ -48,7 +48,7 @@ public class PetPersistenceModel {
      * @param id
      *            the id to set
      */
-    public void setId(final Integer id) {
+    public void setId(final Long id) {
         this.id = id;
     }
 
