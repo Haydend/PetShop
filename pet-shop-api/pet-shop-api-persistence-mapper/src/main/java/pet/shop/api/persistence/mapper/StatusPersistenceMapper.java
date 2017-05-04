@@ -14,12 +14,21 @@ import pet.shop.api.persistence.model.StatusPersistenceEnum;
 public interface StatusPersistenceMapper {
 
     /**
-     * Map from {@link Status} to {@link StatusPersistenceEnum}
+     * Map from {@link Status} to {@link StatusPersistenceEnum}.
      *
      * @param status
      *            {@link Status}.
      * @return {@link StatusPersistenceEnum}.
      */
     public StatusPersistenceEnum mapTo(Status status);
+
+    /**
+     * Map from {@link StatusPersistenceEnum} to {@link Status}.
+     *
+     * @param statusPersistenceEnum
+     *            {@link StatusPersistenceEnum}.
+     * @return {@link Status}.
+     */
+    public Status mapFrom(StatusPersistenceEnum statusPersistenceEnum);
 
 }

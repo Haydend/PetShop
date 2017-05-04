@@ -43,6 +43,22 @@ public class StatusPersistenceMapperTest {
     }
 
     /**
+     * Check mapFrom method with null model.
+     */
+    @Test
+    public void checkMapFromWithNullModel() {
+
+        // Setup
+        final StatusPersistenceEnum statusPersistenceEnum = null;
+
+        // Test
+        final Status actualStatus = statusPersistenceMapper.mapFrom(statusPersistenceEnum);
+
+        // Assert
+        Assert.assertNull(actualStatus);
+    }
+
+    /**
      * Check mapTo method with Adpoted enum.
      */
     @Test
@@ -57,6 +73,23 @@ public class StatusPersistenceMapperTest {
 
         // Assert
         Assert.assertEquals(expectedStatusPersistenceEnum, actualStatusPersistenceEnum);
+    }
+
+    /**
+     * Check mapFrom method with Adpoted enum.
+     */
+    @Test
+    public void checkMapFromWithAdopted() {
+
+        // Setup
+        final Status expectedStatus = Status.ADOPTED;
+        final StatusPersistenceEnum statusPersistenceEnum = StatusPersistenceEnum.ADOPTED;
+
+        // Test
+        final Status actualStatus = statusPersistenceMapper.mapFrom(statusPersistenceEnum);
+
+        // Assert
+        Assert.assertEquals(expectedStatus, actualStatus);
     }
 
     /**
@@ -77,6 +110,23 @@ public class StatusPersistenceMapperTest {
     }
 
     /**
+     * Check mapFrom method with Available for Adoption enum.
+     */
+    @Test
+    public void checkMapFromWithAvailableForAdoption() {
+
+        // Setup
+        final Status expectedStatus = Status.AVAILABLE_FOR_ADOPTION;
+        final StatusPersistenceEnum statusPersistenceEnum = StatusPersistenceEnum.AVAILABLE_FOR_ADOPTION;
+
+        // Test
+        final Status actualStatus = statusPersistenceMapper.mapFrom(statusPersistenceEnum);
+
+        // Assert
+        Assert.assertEquals(expectedStatus, actualStatus);
+    }
+
+    /**
      * Check mapTo method with Unavailable for Adoption enum.
      */
     @Test
@@ -93,4 +143,20 @@ public class StatusPersistenceMapperTest {
         Assert.assertEquals(expectedStatusPersistenceEnum, actualStatusPersistenceEnum);
     }
 
+    /**
+     * Check mapFrom method with Unavailable for Adoption enum.
+     */
+    @Test
+    public void checkMapFromWithUnavailableForAdoption() {
+
+        // Setup
+        final Status expectedStatus = Status.UNAVAILABLE_FOR_ADOPTION;
+        final StatusPersistenceEnum statusPersistenceEnum = StatusPersistenceEnum.UNAVAILABLE_FOR_ADOPTION;
+
+        // Test
+        final Status actualStatus = statusPersistenceMapper.mapFrom(statusPersistenceEnum);
+
+        // Assert
+        Assert.assertEquals(expectedStatus, actualStatus);
+    }
 }

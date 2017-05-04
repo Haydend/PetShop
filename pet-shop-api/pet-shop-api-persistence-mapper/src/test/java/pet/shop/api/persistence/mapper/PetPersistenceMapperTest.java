@@ -79,10 +79,26 @@ public class PetPersistenceMapperTest {
     }
 
     /**
+     * Check mapFrom method with null model.
+     */
+    @Test
+    public void checkMapFromWithNullModel() {
+
+        // Setup
+        final PetPersistenceModel petPersistenceModel = null;
+
+        // Test
+        final Pet actualPet = petPersistenceMapper.mapFrom(petPersistenceModel);
+
+        // Assert
+        Assert.assertNull(actualPet);
+    }
+
+    /**
      * Check mapTo method with empty model.
      */
     @Test
-    public void checkMaptoWithEmptyModel() {
+    public void checkMapToWithEmptyModel() {
 
         // Setup
         final Pet pet = new Pet.PetBuilder().build();
@@ -104,10 +120,35 @@ public class PetPersistenceMapperTest {
     }
 
     /**
+     * Check mapFrom method with empty model.
+     */
+    @Test
+    public void checkMapFromWithEmptyModel() {
+
+        // Setup
+        final Pet expectedPet = new Pet.PetBuilder().build();
+        final PetPersistenceModel petPersistenceModel = new PetPersistenceModel();
+
+        // Mock
+        Mockito.when(statusPersistenceMapper.mapFrom(null)).thenReturn(null);
+        Mockito.when(speciesPersistenceMapper.mapFrom(null)).thenReturn(null);
+
+        // Test
+        final Pet actualPet = petPersistenceMapper.mapFrom(petPersistenceModel);
+
+        // Verify
+        Mockito.verify(statusPersistenceMapper).mapFrom(null);
+        Mockito.verify(speciesPersistenceMapper).mapFrom(null);
+
+        // Assert
+        Assert.assertEquals(expectedPet, actualPet);
+    }
+
+    /**
      * Check mapTo method with full model.
      */
     @Test
-    public void checkMaptoWithFullModel() {
+    public void checkMapToWithFullModel() {
 
         // Setup
         final Pet pet = new Pet.PetBuilder().name(NAME).age(AGE).status(STATUS).species(SPECIES).build();
@@ -131,6 +172,36 @@ public class PetPersistenceMapperTest {
 
         // Assert
         Assert.assertEquals(expectedPetPersistenceModel, actualPetPersistenceModel);
+    }
+
+    /**
+     * Check mapFrom method with full model.
+     */
+    @Test
+    public void checkMapFromWithFullModel() {
+
+        // Setup
+        final Pet expectPet = new Pet.PetBuilder().name(NAME).age(AGE).status(STATUS).species(SPECIES).build();
+
+        final PetPersistenceModel petPersistenceModel = new PetPersistenceModel();
+        petPersistenceModel.setName(NAME);
+        petPersistenceModel.setAge(AGE);
+        petPersistenceModel.setStatus(STATUS_CONTROLER_ENUM);
+        petPersistenceModel.setSpecies(SPECIES_CONTROLLER_ENUM);
+
+        // Mock
+        Mockito.when(statusPersistenceMapper.mapFrom(STATUS_CONTROLER_ENUM)).thenReturn(STATUS);
+        Mockito.when(speciesPersistenceMapper.mapFrom(SPECIES_CONTROLLER_ENUM)).thenReturn(SPECIES);
+
+        // Test
+        final Pet actualPet = petPersistenceMapper.mapFrom(petPersistenceModel);
+
+        // Verify
+        Mockito.verify(statusPersistenceMapper).mapFrom(STATUS_CONTROLER_ENUM);
+        Mockito.verify(speciesPersistenceMapper).mapFrom(SPECIES_CONTROLLER_ENUM);
+
+        // Assert
+        Assert.assertEquals(expectPet, actualPet);
     }
 
 }

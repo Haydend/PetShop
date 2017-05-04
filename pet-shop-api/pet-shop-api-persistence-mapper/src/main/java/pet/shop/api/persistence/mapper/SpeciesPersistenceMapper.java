@@ -22,4 +22,13 @@ public interface SpeciesPersistenceMapper {
      */
     public SpeciesPersistenceEnum mapTo(Species species);
 
+    /**
+     * Map from {@link SpeciesPersistenceEnum} to {@link Species}.
+     *
+     * @param speciesPersistenceEnum
+     *            {@link SpeciesPersistenceEnum}
+     * @return {@link Species}.
+     */
+    public Species mapFrom(SpeciesPersistenceEnum speciesPersistenceEnum);
+
 }
