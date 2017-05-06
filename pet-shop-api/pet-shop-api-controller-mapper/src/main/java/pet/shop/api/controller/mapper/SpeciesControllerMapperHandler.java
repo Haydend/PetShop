@@ -37,4 +37,30 @@ public class SpeciesControllerMapperHandler implements SpeciesControllerMapper {
         return speciesControllerEnum;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Species mapFrom(final SpeciesControllerEnum speciesControllerEnum) {
+
+        Species species = null;
+
+        if (speciesControllerEnum != null) {
+
+            if (speciesControllerEnum == SpeciesControllerEnum.DOG) {
+                species = Species.DOG;
+            } else if (speciesControllerEnum == SpeciesControllerEnum.CAT) {
+                species = Species.CAT;
+            } else if (speciesControllerEnum == SpeciesControllerEnum.FISH) {
+                species = Species.FISH;
+            } else if (speciesControllerEnum == SpeciesControllerEnum.RABBIT) {
+                species = Species.RABBIT;
+            } else {
+                throw new IllegalStateException("Enum is not handled.");
+            }
+        }
+
+        return species;
+    }
+
 }

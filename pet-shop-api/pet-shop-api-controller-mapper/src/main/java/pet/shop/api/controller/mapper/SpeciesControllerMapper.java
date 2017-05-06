@@ -22,4 +22,13 @@ public interface SpeciesControllerMapper {
      */
     public SpeciesControllerEnum mapTo(Species species);
 
+    /**
+     * Map from {@link SpeciesControllerEnum} to {@link Species}.
+     *
+     * @param speciesControllerEnum
+     *            {@link SpeciesControllerEnum}
+     * @return {@link Species}.
+     */
+    public Species mapFrom(SpeciesControllerEnum speciesControllerEnum);
+
 }

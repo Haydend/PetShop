@@ -22,4 +22,12 @@ public interface StatusControllerMapper {
      */
     public StatusControlerEnum mapTo(Status status);
 
+    /**
+     * Map from {@link StatusControlerEnum} to {@link Status}.
+     *
+     * @param statusControlerEnum
+     *            {@link StatusControlerEnum}.
+     * @return {@link Status}.
+     */
+    public Status mapFrom(StatusControlerEnum statusControlerEnum);
 }

@@ -22,4 +22,12 @@ public interface PetControllerMapper {
      */
     public PetControllerModel mapTo(Pet pet);
 
+    /**
+     * Map from {@link PetControllerModel} to {@link Pet}.
+     *
+     * @param petPersistenceModel
+     *            {@link PetControllerModel}.
+     * @return {@link Pet}.
+     */
+    public Pet mapFrom(PetControllerModel petControllerModel);
 }

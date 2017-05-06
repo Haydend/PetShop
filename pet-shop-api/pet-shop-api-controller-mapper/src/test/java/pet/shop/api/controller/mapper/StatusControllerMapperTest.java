@@ -43,6 +43,22 @@ public class StatusControllerMapperTest {
     }
 
     /**
+     * Check mapFrom method with null model.
+     */
+    @Test
+    public void checkMapFromWithNullModel() {
+
+        // Setup
+        final StatusControlerEnum statusControlerEnum = null;
+
+        // Test
+        final Status actualStatus = statusControllerMapper.mapFrom(statusControlerEnum);
+
+        // Assert
+        Assert.assertNull(actualStatus);
+    }
+
+    /**
      * Check mapTo method with Adpoted enum.
      */
     @Test
@@ -57,6 +73,23 @@ public class StatusControllerMapperTest {
 
         // Assert
         Assert.assertEquals(expectedStatusControlerEnum, actualStatusControlerEnum);
+    }
+
+    /**
+     * Check mapFrom method with Adpoted enum.
+     */
+    @Test
+    public void checkMapFromWithAdopted() {
+
+        // Setup
+        final Status expectedStatus = Status.ADOPTED;
+        final StatusControlerEnum statusControlerEnum = StatusControlerEnum.ADOPTED;
+
+        // Test
+        final Status actualStatus = statusControllerMapper.mapFrom(statusControlerEnum);
+
+        // Assert
+        Assert.assertEquals(expectedStatus, actualStatus);
     }
 
     /**
@@ -77,6 +110,23 @@ public class StatusControllerMapperTest {
     }
 
     /**
+     * Check mapFrom method with Available for Adoption enum.
+     */
+    @Test
+    public void checkMapFromWithAvailableForAdoption() {
+
+        // Setup
+        final Status expectedStatus = Status.AVAILABLE_FOR_ADOPTION;
+        final StatusControlerEnum statusControlerEnum = StatusControlerEnum.AVAILABLE_FOR_ADOPTION;
+
+        // Test
+        final Status actualStatus = statusControllerMapper.mapFrom(statusControlerEnum);
+
+        // Assert
+        Assert.assertEquals(expectedStatus, actualStatus);
+    }
+
+    /**
      * Check mapTo method with Unavailable for Adoption enum.
      */
     @Test
@@ -93,4 +143,20 @@ public class StatusControllerMapperTest {
         Assert.assertEquals(expectedStatusControlerEnum, actualStatusControlerEnum);
     }
 
+    /**
+     * Check mapFrom method with Unavailable for Adoption enum.
+     */
+    @Test
+    public void checkMapFromWithUnavailableForAdoption() {
+
+        // Setup
+        final Status expectedStatus = Status.UNAVAILABLE_FOR_ADOPTION;
+        final StatusControlerEnum statusControlerEnum = StatusControlerEnum.UNAVAILABLE_FOR_ADOPTION;
+
+        // Test
+        final Status actualStatus = statusControllerMapper.mapFrom(statusControlerEnum);
+
+        // Assert
+        Assert.assertEquals(expectedStatus, actualStatus);
+    }
 }

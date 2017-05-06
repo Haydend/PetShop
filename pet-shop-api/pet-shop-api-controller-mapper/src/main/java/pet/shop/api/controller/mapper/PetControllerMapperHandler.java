@@ -9,6 +9,8 @@ import pet.shop.api.controller.model.PetControllerModel;
 import pet.shop.api.controller.model.SpeciesControllerEnum;
 import pet.shop.api.controller.model.StatusControlerEnum;
 import pet.shop.api.domain.Pet;
+import pet.shop.api.domain.Species;
+import pet.shop.api.domain.Status;
 
 /**
  * Implementation of {@link PetControllerMapper}.
@@ -64,4 +66,30 @@ public class PetControllerMapperHandler implements PetControllerMapper {
         return petControllerModel;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Pet mapFrom(final PetControllerModel petControllerModel) {
+
+        Pet pet = null;
+
+        if (petControllerModel != null) {
+
+            // Map Species.
+            final Species species = speciesControllerMapper.mapFrom(petControllerModel.getSpecies());
+
+            // Map Status.
+            final Status status = statusControllerMapper.mapFrom(petControllerModel.getStatus());
+
+            // Build new model.
+            pet = new Pet.PetBuilder().name(petControllerModel.getName())
+                .age(petControllerModel.getAge())
+                .species(species)
+                .status(status)
+                .build();
+        }
+
+        return pet;
+    }
 }

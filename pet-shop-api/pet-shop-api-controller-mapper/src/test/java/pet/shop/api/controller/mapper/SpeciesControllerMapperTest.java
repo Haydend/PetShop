@@ -43,6 +43,22 @@ public class SpeciesControllerMapperTest {
     }
 
     /**
+     * Check mapFrom method with null model.
+     */
+    @Test
+    public void checkMapFromWithNullModel() {
+
+        // Setup
+        final SpeciesControllerEnum speciesControllerEnum = null;
+
+        // Test
+        final Species actualSpecies = speciesControllerMapper.mapFrom(speciesControllerEnum);
+
+        // Assert
+        Assert.assertNull(actualSpecies);
+    }
+
+    /**
      * Check mapTo method with Dog enum.
      */
     @Test
@@ -57,6 +73,23 @@ public class SpeciesControllerMapperTest {
 
         // Assert
         Assert.assertEquals(expectedSpeciesControllerEnum, actualSpeciesControllerEnum);
+    }
+
+    /**
+     * Check mapFrom method with Dog enum.
+     */
+    @Test
+    public void checkMapFromWithDogEnum() {
+
+        // Setup
+        final SpeciesControllerEnum speciesControllerEnum = SpeciesControllerEnum.DOG;
+        final Species expectedSpecies = Species.DOG;
+
+        // Test
+        final Species actualSpecies = speciesControllerMapper.mapFrom(speciesControllerEnum);
+
+        // Assert
+        Assert.assertEquals(expectedSpecies, actualSpecies);
     }
 
     /**
@@ -77,6 +110,23 @@ public class SpeciesControllerMapperTest {
     }
 
     /**
+     * Check mapFrom method with Cat enum.
+     */
+    @Test
+    public void checkMapFromWithCatEnum() {
+
+        // Setup
+        final SpeciesControllerEnum speciesControllerEnum = SpeciesControllerEnum.CAT;
+        final Species expectedSpecies = Species.CAT;
+
+        // Test
+        final Species actualSpecies = speciesControllerMapper.mapFrom(speciesControllerEnum);
+
+        // Assert
+        Assert.assertEquals(expectedSpecies, actualSpecies);
+    }
+
+    /**
      * Check mapTo method with Fish enum.
      */
     @Test
@@ -94,6 +144,23 @@ public class SpeciesControllerMapperTest {
     }
 
     /**
+     * Check mapFrom method with Fish enum.
+     */
+    @Test
+    public void checkMapFromWithFishEnum() {
+
+        // Setup
+        final SpeciesControllerEnum speciesControllerEnum = SpeciesControllerEnum.FISH;
+        final Species expectedSpecies = Species.FISH;
+
+        // Test
+        final Species actualSpecies = speciesControllerMapper.mapFrom(speciesControllerEnum);
+
+        // Assert
+        Assert.assertEquals(expectedSpecies, actualSpecies);
+    }
+
+    /**
      * Check mapTo method with Rabbit enum.
      */
     @Test
@@ -108,5 +175,22 @@ public class SpeciesControllerMapperTest {
 
         // Assert
         Assert.assertEquals(expectedSpeciesControllerEnum, actualSpeciesControllerEnum);
+    }
+
+    /**
+     * Check mapFrom method with Rabbit enum.
+     */
+    @Test
+    public void checkMapFromWithRabbitEnum() {
+
+        // Setup
+        final SpeciesControllerEnum speciesControllerEnum = SpeciesControllerEnum.RABBIT;
+        final Species expectedSpecies = Species.RABBIT;
+
+        // Test
+        final Species actualSpecies = speciesControllerMapper.mapFrom(speciesControllerEnum);
+
+        // Assert
+        Assert.assertEquals(expectedSpecies, actualSpecies);
     }
 }

@@ -79,6 +79,22 @@ public class PetControllerMapperTest {
     }
 
     /**
+     * Check mapFrom method with null model.
+     */
+    @Test
+    public void checkMapFromWithNullModel() {
+
+        // Setup
+        final PetControllerModel petControllerModel = null;
+
+        // Test
+        final Pet actualPet = petControllerMapper.mapFrom(petControllerModel);
+
+        // Assert
+        Assert.assertNull(actualPet);
+    }
+
+    /**
      * Check mapTo method with empty model.
      */
     @Test
@@ -101,6 +117,31 @@ public class PetControllerMapperTest {
 
         // Assert
         Assert.assertEquals(expectedPetControllerModel, actualPetControllerModel);
+    }
+
+    /**
+     * Check mapFrom method with empty model.
+     */
+    @Test
+    public void checkMapFromWithEmptyModel() {
+
+        // Setup
+        final Pet expectedPet = new Pet.PetBuilder().build();
+        final PetControllerModel petControllerModel = new PetControllerModel();
+
+        // Mock
+        Mockito.when(statusControllerMapper.mapFrom(null)).thenReturn(null);
+        Mockito.when(speciesControllerMapper.mapFrom(null)).thenReturn(null);
+
+        // Test
+        final Pet actualPet = petControllerMapper.mapFrom(petControllerModel);
+
+        // Verify
+        Mockito.verify(statusControllerMapper).mapFrom(null);
+        Mockito.verify(speciesControllerMapper).mapFrom(null);
+
+        // Assert
+        Assert.assertEquals(expectedPet, actualPet);
     }
 
     /**
@@ -133,4 +174,33 @@ public class PetControllerMapperTest {
         Assert.assertEquals(expectedPetControllerModel, actualPetControllerModel);
     }
 
+    /**
+     * Check mapFrom method with full model.
+     */
+    @Test
+    public void checkMapFromWithFullModel() {
+
+        // Setup
+        final Pet expectPet = new Pet.PetBuilder().name(NAME).age(AGE).status(STATUS).species(SPECIES).build();
+
+        final PetControllerModel expectedPetControllerModel = new PetControllerModel();
+        expectedPetControllerModel.setName(NAME);
+        expectedPetControllerModel.setAge(AGE);
+        expectedPetControllerModel.setStatus(STATUS_CONTROLER_ENUM);
+        expectedPetControllerModel.setSpecies(SPECIES_CONTROLLER_ENUM);
+
+        // Mock
+        Mockito.when(statusControllerMapper.mapFrom(STATUS_CONTROLER_ENUM)).thenReturn(STATUS);
+        Mockito.when(speciesControllerMapper.mapFrom(SPECIES_CONTROLLER_ENUM)).thenReturn(SPECIES);
+
+        // Test
+        final Pet actualPet = petControllerMapper.mapFrom(expectedPetControllerModel);
+
+        // Verify
+        Mockito.verify(statusControllerMapper).mapFrom(STATUS_CONTROLER_ENUM);
+        Mockito.verify(speciesControllerMapper).mapFrom(SPECIES_CONTROLLER_ENUM);
+
+        // Assert
+        Assert.assertEquals(expectPet, actualPet);
+    }
 }
