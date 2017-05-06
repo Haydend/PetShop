@@ -19,4 +19,12 @@ public interface PetShopApiService {
      */
     public List<Pet> retrieveAllPets();
 
+    /**
+     * Add new {@link Pet} to the store.
+     *
+     * @param pet
+     *            {@link Pet} to be added.
+     */
+    public void addPet(Pet pet);
+
 }

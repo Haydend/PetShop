@@ -42,4 +42,14 @@ public class PetShopApiServiceHandler implements PetShopApiService {
         return petList;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void addPet(final Pet pet) {
+
+        // Pass pet to persistence layer to be saved.
+        petPersistenceService.savePet(pet);
+    }
+
 }
