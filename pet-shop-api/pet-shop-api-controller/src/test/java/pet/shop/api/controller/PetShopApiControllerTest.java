@@ -4,8 +4,7 @@
 package pet.shop.api.controller;
 
 import java.util.Arrays;
-
-import javax.ws.rs.core.Response;
+import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -67,7 +66,7 @@ public class PetShopApiControllerTest {
         Mockito.when(petControllerMapper.mapTo(pet)).thenReturn(expectedPetControllerModel);
 
         // Test
-        final Response actualPetControllerModelList = petShopApiController.retrieveAllPets();
+        final List<PetControllerModel> actualPetControllerModelList = petShopApiController.retrieveAllPets();
 
         // Verify
         Mockito.verify(petShopApiService).retrieveAllPets();

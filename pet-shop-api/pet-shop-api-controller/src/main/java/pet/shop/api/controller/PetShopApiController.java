@@ -58,7 +58,7 @@ public class PetShopApiController {
     @GET()
     @Path("/all")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response retrieveAllPets() {
+    public List<PetControllerModel> retrieveAllPets() {
 
         final List<Pet> petList = petShopApiService.retrieveAllPets();
 
@@ -69,7 +69,7 @@ public class PetShopApiController {
             petControllerModelList.add(petControllerModel);
         }
 
-        return Response.ok().entity(petControllerModelList.get(0)).build();
+        return petControllerModelList;
     }
 
     /**
